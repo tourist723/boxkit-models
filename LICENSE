@@ -1,0 +1,43 @@
+本仓库的授权范围（License scope）
+
+本仓库（tourist723/boxkit-models）包含两类内容，授权范围不同：
+
+一、清单与文档 —— CC0 1.0 通用（CC0-1.0，公有领域贡献）
+
+    适用范围：所有 *.json 清单文件，以及 README.md、NOTICE.md 与其它说明性文字。
+    许可全文：LICENSES/CC0-1.0.txt
+    许可页：  https://creativecommons.org/publicdomain/zero/1.0/
+
+    即：可以任意复制、修改、商用，无需署名。
+
+二、模型权重 —— 不在本仓库授权，遵循各上游许可
+
+    适用范围：Release 资产中的 *.onnx、*.spm、vocab.json、tokens.txt。
+    这些文件是第三方模型的格式转换件，版权归各上游作者所有：
+
+      zh-pack-v1     Helsinki-NLP/opus-mt-zh-en     CC-BY-4.0
+      en-pack-v1     Helsinki-NLP/opus-mt-en-zh     Apache-2.0
+      ja-pack-v1     Helsinki-NLP/opus-mt-ja-en     Apache-2.0
+      sense-pack-v1  FunAudioLLM/SenseVoiceSmall    FunASR 模型开源协议 v1.1
+
+    许可全文分别在 LICENSES/CC-BY-4.0.txt、LICENSES/Apache-2.0.txt、
+    LICENSES/FunASR-Model-License-1.1.txt；上游链接、作者署名与改动说明见 NOTICE.md。
+
+    本仓库不对上述权重作出任何再授权、也不提供任何担保：使用、修改、再分发
+    这些权重时，请遵守其各自的上游许可条款。
+
+--------------------------------------------------------------------
+
+License scope (English summary)
+
+- The manifest files (*.json) and documentation in this repository are released
+  under CC0-1.0 (public domain dedication). See LICENSES/CC0-1.0.txt.
+- The model weights distributed as Release assets are NOT licensed by this
+  repository. They are converted artifacts of third-party models and remain
+  under their upstream licenses (Apache-2.0, CC-BY-4.0, or the FunASR Model
+  Open Source License v1.1 respectively). See NOTICE.md for attribution,
+  upstream links and a description of the modifications, and LICENSES/ for the
+  full license texts.
+- No warranty of any kind is provided. This repository is not affiliated with,
+  nor endorsed by, University of Helsinki / Helsinki-NLP, Alibaba Group /
+  FunAudioLLM, or the sherpa-onnx project.
