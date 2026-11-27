@@ -172,3 +172,25 @@ BoxKit 内置的 faster-whisper worker 加载，不需要额外运行时。本�
   [boxkit-models 仓库](https://github.com/tourist723/boxkit-models) 开 issue，说明**包名、
   具体文件与理由**；我们核实后会立即删除对应 Release 资产，并在 README / NOTICE 中记录
   下架情况。在核实完成前，相关资产保持现状；核实成立后不再保留副本。
+
+---
+
+## 6. Errata / 已知标注勘误
+
+早期四个旧 Release 的**说明文字（Release notes）**存在许可标注笔误。该笔误只涉及说明文字，
+**模型权重本身始终按下列正确许可分发**，清单与权重文件未因此改动。以下逐条勘误，许可归属
+以本节、第 1 / 2 节及上游模型卡为准。
+
+| Release | notes 原标注（有误） | 正确许可 | 出处 / 依据 |
+|---|---|---|---|
+| `en-pack-v1` | CC-BY-4.0 | **Apache-2.0** | [Helsinki-NLP/opus-mt-en-zh](https://huggingface.co/Helsinki-NLP/opus-mt-en-zh)，HF 模型卡 `license: apache-2.0`；全文见 [LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt) |
+| `ja-pack-v1` | CC-BY-4.0 | **Apache-2.0** | [Helsinki-NLP/opus-mt-ja-en](https://huggingface.co/Helsinki-NLP/opus-mt-ja-en)，HF 模型卡 `license: apache-2.0`；全文见 [LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt) |
+| `sense-pack-v1` | Apache-2.0 | **FunASR 模型开源协议 v1.1**（FunASR Model Open Source License Agreement v1.1） | [FunAudioLLM/SenseVoiceSmall](https://huggingface.co/FunAudioLLM/SenseVoiceSmall)，HF 模型卡 `license: other / model-license`；全文见 [LICENSES/FunASR-Model-License-1.1.txt](LICENSES/FunASR-Model-License-1.1.txt) |
+
+补充说明：
+
+- `zh-pack-v1` 标注 CC-BY-4.0 与实际一致，不在勘误之列。
+- 旧 Release 的 notes 受工具限制无法回填改写；如对许可归属有疑问，以本 NOTICE、上游模型卡与
+  `LICENSES/` 许可证全文为准。
+- 权重分发未受该笔误影响：en / ja 包权重按 Apache-2.0 条款保留版权与许可声明并注明改动；
+  sense 包权重按 FunASR 协议第 2.2 条注明出处与作者、保留模型名称。
