@@ -21,7 +21,7 @@ BoxKit 的可选离线模型包：翻译权重（OPUS-MT / Marian ONNX）、语�
 | `en-pack-v1` | 离线翻译 英 → 中 | `Helsinki-NLP/opus-mt-en-zh` | Apache-2.0 | 约 227 MB |
 | `ja-pack-v1` | 离线翻译 日 → 英（再经 `en_zh` 两跳转中文） | `Helsinki-NLP/opus-mt-ja-en` | Apache-2.0 | 约 217 MB |
 | `sense-pack-v1` | 旧版语音识别（SenseVoice，保留给旧安装） | `FunAudioLLM/SenseVoiceSmall` | FunASR 模型开源协议 v1.1 | 约 228 MB |
-| `asr-lid-v1` | 字幕语种检测（Whisper Tiny） | `Systran/faster-whisper-tiny` | MIT | 4 个权重文件，约 72 MiB |
+| `asr-lid-v1` | 字幕语种检测（Whisper Tiny） | `Systran/faster-whisper-tiny` | MIT | 4 个权重文件，约 75 MiB |
 | `asr-ja-v1` | 字幕识别 日语（Anime-Whisper，CT2 int8） | `litagin/anime-whisper`（CT2 int8 转换件 `quantumcookie/anime-whisper-ct2-int8`） | MIT | 10 个权重文件，约 736 MiB |
 | `asr-multi-v1` | 字幕识别 英语 / 韩语 / 中文（Large-v3） | `Systran/faster-whisper-large-v3` | MIT | 4 个配置/词表文件 + `model.bin` 分 3 卷，约 2.88 GiB |
 
