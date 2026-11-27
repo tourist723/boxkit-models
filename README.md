@@ -80,5 +80,5 @@ sha256 重新识别；Anime-Whisper 与旧 Kotoba 的文件集不同，安装时
 [LICENSES/MIT.txt](LICENSES/MIT.txt)。
 
 商用或再分发前，请自行核对上游条款与你所在法域的要求。若你是权利人并认为本仓库的
-distribution 方式不当，请在本仓库开 issue，说明包名、具体文件与理由；我们核实后会立即下架
+分发方式不当，请在本仓库开 issue，说明包名、具体文件与理由；我们核实后会立即下架
 相关资产，并在 README / NOTICE 中记录下架情况。
