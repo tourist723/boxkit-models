@@ -1,0 +1,45 @@
+name: Publish ASR model packs
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/asr-packs.yml"
+      - "tools/build_asr_packs.py"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build pack assets and manifests
+        run: python tools/build_asr_packs.py
+
+      - name: Create releases and upload assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          for tag in asr-lid-v1 asr-ja-v1 asr-multi-v1; do
+            echo "== $tag =="
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "release exists; uploading/overwriting assets"
+            else
+              gh release create "$tag" \
+                --title "$tag" \
+                --notes-file "dist/asr-packs/$tag/RELEASE_NOTES.md"
+            fi
+            mapfile -t assets < <(find "dist/asr-packs/$tag" -type f ! -name "RELEASE_NOTES.md")
+            gh release upload "$tag" "${assets[@]}" --clobber
+          done
