@@ -1,0 +1,32 @@
+MIT License
+
+Copyright (c) 2022 OpenAI (Whisper original weights)
+Copyright (c) Systran (faster-whisper CTranslate2 conversion)
+Copyright (c) litagin (Anime-Whisper fine-tuned weights)
+Copyright (c) quantumcookie (Anime-Whisper CTranslate2 int8 conversion)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+本文件适用于本仓库以 MIT 许可分发的 Whisper / CTranslate2 权重包：
+`asr-lid-v1`、`asr-ja-v1`、`asr-multi-v1`。上述版权行按著作权归属分列：
+Whisper 原始权重归 OpenAI；faster-whisper 的 CT2 转换件归 Systran；
+Anime-Whisper 微调权重归 litagin；Anime-Whisper 的 CT2 int8 转换件归 quantumcookie。
+MIT 许可只覆盖对应权重本身，不授予任何商标、专利或肖像权许可。
