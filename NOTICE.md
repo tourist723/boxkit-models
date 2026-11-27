@@ -10,7 +10,7 @@
 | `en-pack-v1` | 英 → 中（`en_zh`） | [Helsinki-NLP/opus-mt-en-zh](https://huggingface.co/Helsinki-NLP/opus-mt-en-zh) | Apache-2.0 | 226.8 MB |
 | `ja-pack-v1` | 日 → 英（`ja_en`） | [Helsinki-NLP/opus-mt-ja-en](https://huggingface.co/Helsinki-NLP/opus-mt-ja-en) | Apache-2.0 | 216.9 MB |
 | `sense-pack-v1` | 语音识别（`sense-voice`） | [FunAudioLLM/SenseVoiceSmall](https://huggingface.co/FunAudioLLM/SenseVoiceSmall) | FunASR 模型开源协议 v1.1 | 228.4 MB |
-| `asr-lid-v1` | 字幕语种检测（`whisper-lid`） | [Systran/faster-whisper-tiny](https://huggingface.co/Systran/faster-whisper-tiny) | MIT | 72.0 MiB |
+| `asr-lid-v1` | 字幕语种检测（`whisper-lid`） | [Systran/faster-whisper-tiny](https://huggingface.co/Systran/faster-whisper-tiny) | MIT | 74.6 MiB |
 | `asr-ja-v1` | 日语字幕识别（`whisper-ja`） | [litagin/anime-whisper](https://huggingface.co/litagin/anime-whisper) → [quantumcookie/anime-whisper-ct2-int8](https://huggingface.co/quantumcookie/anime-whisper-ct2-int8) | MIT | 约 736 MiB |
 | `asr-multi-v1` | 英/韩/中字幕识别（`whisper-en`） | [Systran/faster-whisper-large-v3](https://huggingface.co/Systran/faster-whisper-large-v3) | MIT | 约 2.88 GiB（`model.bin` 分 3 卷） |
 
