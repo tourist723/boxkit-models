@@ -9,6 +9,7 @@
 | `zh-pack-v1` | 中 → 英（`zh_en`） | [Helsinki-NLP/opus-mt-zh-en](https://huggingface.co/Helsinki-NLP/opus-mt-zh-en) | CC-BY-4.0 | 226.8 MB |
 | `en-pack-v1` | 英 → 中（`en_zh`） | [Helsinki-NLP/opus-mt-en-zh](https://huggingface.co/Helsinki-NLP/opus-mt-en-zh) | Apache-2.0 | 226.8 MB |
 | `ja-pack-v1` | 日 → 英（`ja_en`） | [Helsinki-NLP/opus-mt-ja-en](https://huggingface.co/Helsinki-NLP/opus-mt-ja-en) | Apache-2.0 | 216.9 MB |
+| `ko-pack-v1` | 韩 → 英（`ko_en`） | [Helsinki-NLP/opus-mt-ko-en](https://huggingface.co/Helsinki-NLP/opus-mt-ko-en) | Apache-2.0 | 238.6 MB |
 | `sense-pack-v1` | 语音识别（`sense-voice`） | [FunAudioLLM/SenseVoiceSmall](https://huggingface.co/FunAudioLLM/SenseVoiceSmall) | FunASR 模型开源协议 v1.1 | 228.4 MB |
 | `asr-lid-v1` | 字幕语种检测（`whisper-lid`） | [Systran/faster-whisper-tiny](https://huggingface.co/Systran/faster-whisper-tiny) | MIT | 74.6 MiB |
 | `asr-ja-v1` | 日语字幕识别（`whisper-ja`） | [litagin/anime-whisper](https://huggingface.co/litagin/anime-whisper) → [quantumcookie/anime-whisper-ct2-int8](https://huggingface.co/quantumcookie/anime-whisper-ct2-int8) | MIT | 约 736 MiB |
@@ -16,7 +17,7 @@
 
 ---
 
-## 1. OPUS-MT 翻译权重（`zh-pack-v1` / `en-pack-v1` / `ja-pack-v1`）
+## 1. OPUS-MT 翻译权重（`zh-pack-v1` / `en-pack-v1` / `ja-pack-v1` / `ko-pack-v1`）
 
 **上游作者署名**：Helsinki-NLP —— University of Helsinki, Language Technology Research Group
 （赫尔辛基大学语言技术研究组）。模型卡与论文：*OPUS-MT — Building open translation services
@@ -26,7 +27,7 @@ for the World*（Tiedemann & Thottingal, EAMT 2020）。
 
 - `opus-mt-zh-en`：**CC-BY-4.0**，全文见 [LICENSES/CC-BY-4.0.txt](LICENSES/CC-BY-4.0.txt)，
   许可页 <https://creativecommons.org/licenses/by/4.0/>。
-- `opus-mt-en-zh`、`opus-mt-ja-en`：**Apache-2.0**，全文见
+- `opus-mt-en-zh`、`opus-mt-ja-en`、`opus-mt-ko-en`：**Apache-2.0**，全文见
   [LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt)，
   许可页 <https://www.apache.org/licenses/LICENSE-2.0>。
 
@@ -39,11 +40,15 @@ for the World*（Tiedemann & Thottingal, EAMT 2020）。
 3. 按 BoxKit 引擎约定改名：`encoder_model.onnx` → `encoder.onnx`、
    `decoder_model.onnx` → `decoder.onnx`、`decoder_with_past_model.onnx` →
    `decoder_with_past.onnx`；
-4. `vocab.json` 与 SentencePiece 分词器（`tokenizer.spm`，或日→英包的 `source.spm` +
-   `target.spm`）原样取自上游模型仓库，未改动内容。
+4. `vocab.json` 与 SentencePiece 分词器（`tokenizer.spm`，或 `ja_en` / `ko_en` 包的
+   `source.spm` + `target.spm`）原样取自上游模型仓库，未改动内容。
 
-**没有包含**：上游的训练数据（OPUS 语料，由众多第三方语料库组成，各有各的条款）、
-训练脚本、以及 Helsinki-NLP 的商标或标识。
+**`ko-pack-v1` 特别说明**：上游只有韩→英（`ko_en`）方向，**不存在** OPUS-MT 韩→中
+直译包；应用内韩→中走「`ko_en` → `en_zh`」两跳，`en_zh` 为既有英→中包。本包不包含
+训练数据（OPUS 语料，由众多第三方语料库组成，各有各的条款）、训练脚本、以及
+Helsinki-NLP 的商标或标识。
+
+**没有包含**：其余 OPUS-MT 包同样不含上游训练数据、训练脚本与 Helsinki-NLP 商标标识。
 
 **Apache-2.0 声明**：本仓库对这些包的再分发不附带任何额外保证；上游模型按「现状」提供，
 不附带明示或默示担保。若你修改后再分发，请同样注明改动。
@@ -153,8 +158,8 @@ BoxKit 内置的 faster-whisper worker 加载，不需要额外运行时。本�
 ## 4. 清单文件与安装校验
 
 每个 Release 带一个 `*.json` 清单（`zh-pack.json` / `en-pack.json` / `ja-pack.json` /
-`sense-pack.json` / `asr-lid.json` / `asr-ja.json` / `asr-multi.json`），内容为版本、
-方向、每个文件的字节数与 sha256；分卷包还包含每卷的 `name` / `bytes` / `sha256`。
+`ko-pack.json` / `sense-pack.json` / `asr-lid.json` / `asr-ja.json` / `asr-multi.json`），
+内容为版本、方向、每个文件的字节数与 sha256；分卷包还包含每卷的 `name` / `bytes` / `sha256`。
 清单与文档由本仓库以 **CC0-1.0** 提供；根目录 `LICENSE`（CC0-1.0）不覆盖模型权重。
 
 应用安装时：先读清单 → 下载到 `.part` → 校验 sha256 → 通过才改名落地。分卷包逐卷校验，
