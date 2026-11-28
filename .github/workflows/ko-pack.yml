@@ -1,0 +1,58 @@
+name: Publish Korean translate pack
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/ko-pack.yml"
+      - "tools/build_ko_pack.py"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install "optimum[onnxruntime]" onnxruntime sentencepiece transformers
+
+      - name: Build ko-pack-v1 (export ONNX + int8 + manifest)
+        env:
+          HF_ENDPOINT: https://hf-mirror.com
+        run: python tools/build_ko_pack.py
+
+      - name: Create / update ko-pack-v1 Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          TAG=ko-pack-v1
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "$TAG" --notes-file dist/ko-pack-v1/RELEASE_NOTES.md
+          fi
+          gh release upload "$TAG" \
+            dist/ko-pack-v1/ko-pack.json \
+            dist/ko-pack-v1/encoder.onnx \
+            dist/ko-pack-v1/decoder.onnx \
+            dist/ko-pack-v1/decoder_with_past.onnx \
+            dist/ko-pack-v1/vocab.json \
+            dist/ko-pack-v1/source.spm \
+            dist/ko-pack-v1/target.spm \
+            --clobber
+
+      - name: Record built manifest
+        run: |
+          cat dist/ko-pack-v1/ko-pack.json
