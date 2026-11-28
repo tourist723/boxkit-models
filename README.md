@@ -20,6 +20,7 @@ BoxKit 的可选离线模型包：翻译权重（OPUS-MT / Marian ONNX）、语�
 | `zh-pack-v1` | 离线翻译 中 → 英 | `Helsinki-NLP/opus-mt-zh-en` | CC-BY-4.0 | 约 227 MB |
 | `en-pack-v1` | 离线翻译 英 → 中 | `Helsinki-NLP/opus-mt-en-zh` | Apache-2.0 | 约 227 MB |
 | `ja-pack-v1` | 离线翻译 日 → 英（再经 `en_zh` 两跳转中文） | `Helsinki-NLP/opus-mt-ja-en` | Apache-2.0 | 约 217 MB |
+| `ko-pack-v1` | 离线翻译 韩 → 英（再经 `en_zh` 两跳转中文） | `Helsinki-NLP/opus-mt-ko-en` | Apache-2.0 | 6 个权重/分词文件，约 228 MiB |
 | `sense-pack-v1` | 旧版语音识别（SenseVoice，保留给旧安装） | `FunAudioLLM/SenseVoiceSmall` | FunASR 模型开源协议 v1.1 | 约 228 MB |
 | `asr-lid-v1` | 字幕语种检测（Whisper Tiny） | `Systran/faster-whisper-tiny` | MIT | 4 个权重文件，约 75 MiB |
 | `asr-ja-v1` | 字幕识别 日语（Anime-Whisper，CT2 int8） | `litagin/anime-whisper`（CT2 int8 转换件 `quantumcookie/anime-whisper-ct2-int8`） | MIT | 10 个权重文件，约 736 MiB |
@@ -36,7 +37,7 @@ BoxKit 的可选离线模型包：翻译权重（OPUS-MT / Marian ONNX）、语�
 
 BoxKit「翻译 → 引擎设置」里有两处入口：
 
-- **离线翻译包**（一张卡，方向芯片可单独装）：`zh_en` / `en_zh` / `ja_en`；
+- **离线翻译包**（一张卡，方向芯片可单独装）：`zh_en` / `en_zh` / `ja_en` / `ko_en`；
 - **识别模型**：`sense-voice`。
 
 「翻译 → 引擎设置 → **语音模型**」里另有三张 Whisper 模型卡，按语言选择，不再把
@@ -46,6 +47,9 @@ Tiny / large-v3 / Kotoba 混在一起：
 - **英语 / 韩语 / 中文 Large-v3**（`asr-multi-v1`）：三种语言共用一套多语种权重；
 - **自动判语种 Whisper Tiny**（`asr-lid-v1`）：只做语种检测，不单独承担整轨识别。
 
+韩→中没有 OPUS-MT 直译包：`ko_en`（韩→英）装好后，需配合已安装的 `en_zh`（英→中）
+走两跳；一键安装 `ko_en` 时若 `en_zh` 未装，会先自动装 `en_zh` 再装 `ko_en`。
+
 点「一键安装」会拉清单 → 逐文件（或逐卷）下载 → 校验 sha256 → 落到模型目录，
 支持断点续传与取消；分卷全部到齐后按顺序拼成整文件，再校验整文件 sha256，
 通过后才改名上线。国内直连 GitHub 常常不通，应用按 `gh-proxy.com` → `ghproxy.net`
@@ -54,7 +58,7 @@ Tiny / large-v3 / Kotoba 混在一起：
 清单地址可用环境变量覆盖（内网镜像 / 自建分发 / 测试）：
 
 ```text
-BOXKIT_PACK_MANIFEST_ZH_EN / _EN_ZH / _JA_EN / _SENSE_VOICE
+BOXKIT_PACK_MANIFEST_ZH_EN / _EN_ZH / _JA_EN / _KO_EN / _SENSE_VOICE
 BOXKIT_ASR_MANIFEST_JA / _MULTI / _LID
 BOXKIT_JA_PACK_MIRRORS        # 逗号分隔的镜像前缀，空字符串表示不用镜像
 ```
@@ -69,7 +73,7 @@ sha256 重新识别；Anime-Whisper 与旧 Kotoba 的文件集不同，安装时
 |---|---|
 | 本仓库的清单（`*.json`）、构建脚本与文档（`README.md` / `NOTICE.md`） | CC0-1.0（公有领域贡献），随意使用 |
 | `zh-pack-v1` 权重 | CC-BY-4.0（需署名 + 注明改动） |
-| `en-pack-v1` / `ja-pack-v1` 权重 | Apache-2.0（需保留版权与许可声明、注明改动） |
+| `en-pack-v1` / `ja-pack-v1` / `ko-pack-v1` 权重 | Apache-2.0（需保留版权与许可声明、注明改动） |
 | `sense-pack-v1` 权重 | FunASR 模型开源协议 v1.1（需注明出处与作者、保留模型名称） |
 | `asr-lid-v1` / `asr-ja-v1` / `asr-multi-v1` 权重 | MIT（保留版权与许可声明） |
 
